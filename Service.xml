@@ -2,6 +2,6 @@
 <Title/>
 <Abstract/>
 <TileMaps>
-<TileMap title="Terrain" srs="EPSG:3857" profile="local" href="http://bondah.github.io/Mapbox.xml" overwriteurls="false" type="InvertedTMS"/>
+<TileMap title="Terrain" srs="EPSG:900913" profile="local" href="http://bondah.github.io/Mapbox.xml" overwriteurls="false" type="InvertedTMS"/>
 </TileMaps>
 </TileMapService>
