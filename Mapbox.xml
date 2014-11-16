@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-  <TileMap version="1.0.0" tilemapservice="http://a.tiles.mapbox.com/v4/arup.j18lli8e">
+  <TileMap version="1.0.0" tilemapservice="http://a.tiles.mapbox.com/v4/arup.j18lli8e/page.html?access_token=pk.eyJ1IjoiYXJ1cCIsImEiOiJ5b2YtaFprIn0.LI1mZfSG49YeKe_2wywf1Q#10">
               <Title>Terrain</Title>
               <Abstract></Abstract>
               <SRS>EPSG:4326</SRS>
