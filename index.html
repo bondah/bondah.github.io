@@ -1,49 +1,80 @@
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8 />
-<title>Los Angeles Wild Animals</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<header>
 
-    <section id="masthead">
-        <div id="branding" role="banner">
-            <div class="topbar">
-                <h1 id="site-title"><a href="#"><img src="images/logo.jpg" width="180" height="65" alt="Xmedia"></a></h1>
-                <h2 id="site-description">Wild Animals in Los Angeles</h2>
-            </div><!-- topbar -->
-        </div><!-- #branding -->
-    </section><!-- #masthead -->
+<body bgcolor="#2E2E2E">
+<h1>Wild Animals in Los Angeles</h1>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="bondaharper">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<h3></h3>
+<div id="map"></div>
+	<script type="text/javascript">
+	$(document).ready(function(){
 
-    <div class="home_header">
-        <h3>What animals can yo see in Los Angeles?</h3>
-    </div><!--home header-->
+	var map = L.map('map').setView([34.0570, -118.2380], 9);
 
-    <div class="home_header_right">
-        <a href="#"><img src="" alt="image" width="154" height="50" /></a>
-        <a href="#"><img src="" alt="image" width="154" height="50"  /></a>
-    </div>
+	L.tileLayer('http://{s}.tiles.mapbox.com/v3/MapID/{z}/{x}/{y}.png', {
+	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	  }).addTo(map);
+	var myLayer = L.mapbox.featureLayer().addTo(map);
 
-</header><!-- Header -->
-<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/Leaflet.fullscreen.min.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.3/leaflet.fullscreen.css' rel='stylesheet' />
+	var geoJson = [{
+		type: 'Feature',
+		"geometry": { "type": "Point", "coordinates": [-77.03, 38.90]},
+		"properties": {
+			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Cherry_Blossoms_and_Washington_Monument.jpg/320px-Cherry_Blossoms_and_Washington_Monument.jpg",
+			"url": "https://en.wikipedia.org/wiki/Washington,_D.C.",
+			"marker-symbol": "star",
+			"marker-color": "#ff8888",
+			"Animal": ""
+		}
+	}, {
+		type: 'Feature',
+		"geometry": { "type": "Point", "coordinates": [-87.63, 41.88]},
+		"properties": {
+			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Chicago_sunrise_1.jpg/640px-Chicago_sunrise_1.jpg",
+			"url": "https://en.wikipedia.org/wiki/Chicago",
+			"marker-color": "#ff8888",
+			"city": "Chicago"
+		}
+	}, {
+		type: 'Feature',
+		"geometry": { "type": "Point", "coordinates": [-74.00, 40.71]},
+		"properties": {
+			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
+			"url": "https://en.wikipedia.org/wiki/New_York_City",
+			"marker-color": "#ff8888",
+			"city": "New York City"
+		}
+	}];
 
-<div id='map'></div>
+	// Add custom popups to each using our custom feature properties
+	myLayer.on('layeradd', function(e) {
+		var marker = e.layer,
+			feature = marker.feature;
 
-<script>
-L.mapbox.accessToken = 'pk.eyJ1IjoiYXJ1cCIsImEiOiJ5b2YtaFprIn0.LI1mZfSG49YeKe_2wywf1Q';
-var map = L.mapbox.map('map', 'examples.map-i875kd35')
-    .setView([ 34.012746, -118.287671], 15);
+		// Create custom popup content
+		var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
+								'<img src="' + feature.properties.image + '" />' +
+								feature.properties.city +
+							'</a>';
 
-L.control.fullscreen().addTo(map);
-</script>
+		// http://leafletjs.com/reference.html#popup
+		marker.bindPopup(popupContent,{
+			closeButton: false,
+			minWidth: 320
+		});
+	});
+
+	// Add features to the map
+	myLayer.setGeoJSON(geoJson);
+	});
+	
+	</script>
 </body>
 </html>
