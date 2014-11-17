@@ -3,7 +3,7 @@
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+	<script src="animals.js"></script>
 	<link rel="stylesheet" href="style.css" />
 </head>
 
@@ -12,69 +12,21 @@
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="bondaharper">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <h3></h3>
+
 <div id="map"></div>
 	<script type="text/javascript">
+
 	$(document).ready(function(){
 
 	var map = L.map('map').setView([34.0570, -118.2380], 9);
 
-	L.tileLayer('http://{s}.tiles.mapbox.com/v3/MapID/{z}/{x}/{y}.png', {
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	  }).addTo(map);
-	var myLayer = L.mapbox.featureLayer().addTo(map);
-
-	var geoJson = [{
-		type: 'Feature',
-		"geometry": { "type": "Point", "coordinates": [-77.03, 38.90]},
-		"properties": {
-			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Cherry_Blossoms_and_Washington_Monument.jpg/320px-Cherry_Blossoms_and_Washington_Monument.jpg",
-			"url": "https://en.wikipedia.org/wiki/Washington,_D.C.",
-			"marker-symbol": "star",
-			"marker-color": "#ff8888",
-			"Animal": ""
-		}
-	}, {
-		type: 'Feature',
-		"geometry": { "type": "Point", "coordinates": [-87.63, 41.88]},
-		"properties": {
-			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Chicago_sunrise_1.jpg/640px-Chicago_sunrise_1.jpg",
-			"url": "https://en.wikipedia.org/wiki/Chicago",
-			"marker-color": "#ff8888",
-			"city": "Chicago"
-		}
-	}, {
-		type: 'Feature',
-		"geometry": { "type": "Point", "coordinates": [-74.00, 40.71]},
-		"properties": {
-			"image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
-			"url": "https://en.wikipedia.org/wiki/New_York_City",
-			"marker-color": "#ff8888",
-			"city": "New York City"
-		}
-	}];
-
-	// Add custom popups to each using our custom feature properties
-	myLayer.on('layeradd', function(e) {
-		var marker = e.layer,
-			feature = marker.feature;
-
-		// Create custom popup content
-		var popupContent =  '<a target="_blank" class="popup" href="' + feature.properties.url + '">' +
-								'<img src="' + feature.properties.image + '" />' +
-								feature.properties.city +
-							'</a>';
-
-		// http://leafletjs.com/reference.html#popup
-		marker.bindPopup(popupContent,{
-			closeButton: false,
-			minWidth: 320
-		});
 	});
-
-	// Add features to the map
-	myLayer.setGeoJSON(geoJson);
-	});
-	
+	var animals = new L.geoJson(animals, {
+	  }).addTo(map);
 	</script>
+
 </body>
 </html>
