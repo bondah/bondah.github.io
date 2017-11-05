@@ -1,7 +1,0 @@
-<TileMapService version="1.0.0">
-<Title/>
-<Abstract/>
-<TileMaps>
-<TileMap title="Terrain" srs="EPSG:900913" profile="local" href="http://bondah.github.io/Mapbox.xml" overwriteurls="false" type="InvertedTMS"/>
-</TileMaps>
-</TileMapService>

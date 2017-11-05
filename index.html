@@ -1,32 +1,18 @@
-<html>
-<head>
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="animals.js"></script>
-	<link rel="stylesheet" href="style.css" />
-</head>
+---
+layout: default
+---
 
-<body bgcolor="#2E2E2E">
-<h1>Wild Animals in Los Angeles</h1>
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="bondaharper">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<h3></h3>
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
 
-<div id="map"></div>
-	<script type="text/javascript">
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
 
-	$(document).ready(function(){
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
 
-	var map = L.map('map').setView([34.0570, -118.2380], 9);
-
-	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-	    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-	  }).addTo(map);
-	});
-	var animals = new L.geoJson(animals, {
-	  }).addTo(map);
-	</script>
-
-</body>
-</html>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
