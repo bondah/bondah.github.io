@@ -6,6 +6,10 @@ permalink: /projects/
 
 Projects
 
-### Project 1
+### Rainfall mapping
 
-link
+![bh-rain](/images/bh-rain.jpg "bh-rain")
+
+This project uses the Python library Beautiful Soup to scrape rain gage data. It uses DC js, D3 js, Crossfilter js, to graph the data at different intervals. Leaflet js is used for the map og gage locations.
+
+TODO: fix so it displays in Firefox 
