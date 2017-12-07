@@ -30,4 +30,3 @@ This project uses the Python library Beautiful Soup to scrape rain gage data. It
 
 TODO: fix so it displays in Firefox
 
-### 
