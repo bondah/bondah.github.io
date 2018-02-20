@@ -13,7 +13,7 @@ Next, I did some web searches to see what else was available. California has a s
 
 Texas and Missouri did not appear to have a similar resource. Oddly, most agencies seem to model airports as point files which seems inappropriate for infrastructure with such a large footprint. The City of Houston did have an airport boundary GIS file, but it was obviously inaccurate as part of the north runway wasn't inside the boundary [^2]. Both IAH and MCI are owned by their respective cities, so I did a comparison of city owned parcels to the OSM boundary [^3] [^4]. 
 ![Houston airport]({{ "/images/IAH.jpg" | absolute_url }})
-![Kansas City airport]({{ "/images/KCI.jpg" | absolute_url }})
+![Kansas City airport]({{ "/images/KCI.jpg" | absolute_url }}){:height="75%" width="75%"}
 
 In both cases, as one would expect, the city owned parcels outside and around the airport proper. Kansas City really has a lot of room to grow around MCI, although I suspect they just bought the parcels cheap and are going to sell them for a profit as the city grows (the airport will never be that big!). I considered editing the OSM data for the purposes of this comparison, but while it may not be perfect, it does consistently cover the runways and terminal buildings.
 
